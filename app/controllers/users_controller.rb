@@ -5,8 +5,9 @@ class UsersController < ApplicationController
 	end
 	def create
 		@user=User.new(user_params)
+		flash[:success]="Welcome to the Sample App!"
 		if @user.save
-			debugger
+			flash[:success]="Welcome to the Sample App!"
 			redirect_to user_url(@user) 
 		else
 			render 'new'
@@ -16,7 +17,6 @@ class UsersController < ApplicationController
 		@user=User.find(params[:id])
 		 # debugger
 		end
-
 		private	def user_params
 		params.require(:user).permit(:name, :email, :password,:password_confimation)
 	end
